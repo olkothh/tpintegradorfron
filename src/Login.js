@@ -1,6 +1,5 @@
 import React from "react"; 
-/* import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; */
+
 import { useNavigate, useParams } from "react-router-dom";
 
 class InternalLogin extends React.Component {
@@ -49,43 +48,16 @@ class InternalLogin extends React.Component {
         if (result.ok) {
           sessionStorage.setItem('token', result.body.token) 
 
-         /*  toast.success(result.body.message, {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          }); */ alert("token guardado")
+         alert("token guardado")
 
-          this.props.navigate("/curso/list");
+          this.props.navigate("/");
         } else {
-         /*  toast.error(result.body.message, {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          }); */ alert("error")
+          alert("error")
         }
       },
         (error) => {
           console.log(error);
-         /*  toast.error("No se pudo realizar la operacion, contactese con un administrador.", {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          }); */
+         
         }
       );
   }
@@ -106,7 +78,7 @@ class InternalLogin extends React.Component {
             </div>
             <button type="submit" className="btn btn-primary" >
               <span class="material-symbols-outlined center-align" >
-                login
+                
               </span>
               <span>
                 Ingresar

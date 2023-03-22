@@ -1,41 +1,64 @@
 import { Link } from "react-router-dom";
-import React from "react";
-function Menu() {
-    return <>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <Link to="/" className="navbar-brand">
-                    <img src="/logo.png" className="nav-img-main" />
-                </Link>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <Link to="/" className="nav-link active">Home</Link>
-                        </li>
-                      {/*   <li class="nav-item">
-                            <Link to="/about" className="nav-link">About</Link>
-                        </li>
-                        <li class="nav-item">
-                            <Link to="/persona/list" className="nav-link">Listar Personas</Link>
-                        </li>
-                        <li class="nav-item">
-                            <Link to="/persona/gest" className="nav-link">Gestion Personas</Link>
-                        </li> */}
-                        <li class="nav-item">
-                            <Link to="/login" className="nav-link">Login</Link>
-                        </li>
-                        <li class="nav-item">
-                            <Link to="/curso" className="nav-link">Lista de cursos</Link>
-                        </li>
-                    </ul>
-                </div>
+import React, { useState } from "react";
 
-            </div>
-        </nav>
-    </>
+function Menu() {
+  const [usuario, setUsuario] = useState( "usuario" ); // Nombre de usuario por defecto
+
+  function cerrarSesion() {
+    setUsuario(null); // Eliminar el nombre de usuario para cerrar sesión
+  }
+
+  return (
+    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <div className="container-fluid">
+        <Link to="/" className="navbar-brand">
+          <img src="/logo.png" className="nav-img-main" />
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              {usuario ? (
+                <div className="nav-link">
+                  <span>{usuario}</span>
+                  <button
+                    className="btn btn-outline-danger btn-sm ms-3"
+                    onClick={cerrarSesion}
+                  >
+                    Cerrar sesión
+                  </button>
+                </div>
+              ) : (
+                <Link to="/login" className="nav-link">
+                  login
+                </Link>
+              )}
+            </li>
+            <li className="nav-item">
+              <Link to="/alumnos" className="nav-link">
+                Alumnos
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/cursos" className="nav-link">
+                Cursos
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
 }
 
 export default Menu;
